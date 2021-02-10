@@ -6,7 +6,7 @@ This is an action used to create an event on AWS's event bridge notifying that a
 
 ### `stage`
 
-**Required** The stage the to which the deployment should be logged. Default `'prod'`.
+**Required** The stage to which the deployment should be logged. Default `'prod'`.
 
 ## Outputs
 
