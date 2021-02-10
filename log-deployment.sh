@@ -9,6 +9,9 @@ EVENT_NAME=${EVENT_NAME:-serviceDeployed}
 EVENT_SOURCE=${EVENT_SOURCE:-deployments}
 EVENT_BUS_NAME_PREFIX=${EVENT_BUS_NAME_PREFIX:-deployments-event-bus}
 
+IS_DEPLOYMENT_ROLLBACK=${IS_DEPLOYMENT_ROLLBACK:-false}
+IS_A_PACKAGE=${IS_A_PACKAGE:false}
+
 REPO_NAME=$(echo "${GITHUB_REPOSITORY}" | sed 's/'"${ORG_PREFIX:-lemonenergy}"'\///')
 
 cat > "${FILE_NAME}" <<EOL
