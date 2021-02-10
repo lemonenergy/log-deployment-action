@@ -1,11 +1,15 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 STAGE=${1}
 
 FILE_NAME='entries.json'
 
-REPO_NAME=$(echo "${GITHUB_REPOSITORY}" | sed 's/'"${ORG_PREFIX}"'\///')
+EVENT_NAME=${EVENT_NAME:-serviceDeployed}
+EVENT_SOURCE=${EVENT_SOURCE:-deployments}
+EVENT_BUS_NAME_PREFIX=${EVENT_BUS_NAME_PREFIX:-deployments-event-bus}
+
+REPO_NAME=$(echo "${GITHUB_REPOSITORY}" | sed 's/'"${ORG_PREFIX:-lemonenergy}"'\///')
 
 cat > "${FILE_NAME}" <<EOL
 [
@@ -22,7 +26,7 @@ echo 'created entries.json with content:'
 
 cat "${FILE_NAME}"
 
-OUTPUT=$(/root/.local/bin/aws events put-events --entries "file://${FILE_NAME}" --region "${CONTAINER_AWS_REGION}")
+OUTPUT=$(aws events put-events --entries "file://${FILE_NAME}" --region "${CONTAINER_AWS_REGION:-us-east-2}")
 echo "${OUTPUT}"
 
 echo "${OUTPUT}" | grep '"FailedEntryCount": 0'

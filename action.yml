@@ -7,7 +7,9 @@ inputs:
     required: true
     default: 'prod'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'composite'
+  steps:
+    - run: $GITHUB_ACTION_PATH/log-deployment.sh
+      shell: bash
   args:
     - ${{ inputs.stage }}
