@@ -1,0 +1,13 @@
+# action.yml
+name: 'Log Deployment'
+description: 'Logs a deployment to AWS EventBridge'
+inputs:
+  stage:  # id of input
+    description: 'The stage the to which the deployment should be logged'
+    required: true
+    default: 'prod'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.stage }}
