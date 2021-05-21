@@ -20,7 +20,7 @@ cat > "${FILE_NAME}" <<EOL
     "DetailType": "${EVENT_NAME}",
     "Source": "${EVENT_SOURCE}",
     "EventBusName": "${EVENT_BUS_NAME_PREFIX}-${STAGE}",
-    "Detail": "{ \"layer\": \"${REPOSITORY_LAYER}\", \"repository\": \"${REPO_NAME}\", \"commit\": \"${GITHUB_SHA}\", \"rollback\": ${IS_DEPLOYMENT_ROLLBACK}, \"package\": ${IS_A_PACKAGE}}"
+    "Detail": "{ \"layer\": \"${REPOSITORY_LAYER}\", \"repository\": \"${REPO_NAME}\", \"commit\": \"${GITHUB_SHA}\", \"author\": \"${GITHUB_ACTOR}\", \"rollback\": ${IS_DEPLOYMENT_ROLLBACK}, \"package\": ${IS_A_PACKAGE}}"
   }
 ]
 EOL
